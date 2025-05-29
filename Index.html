@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página de Dominio Público</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Para incluir padding y border en el ancho */
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #content {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            white-space: pre-wrap; /* Para preservar saltos de línea y espacios */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Bienvenido a mi Página Web Gratuita y Editable!</h1>
+        <p>Aquí puedes escribir y editar contenido libremente.</p>
+
+        <h2>Escribe tu contenido aquí:</h2>
+        <textarea id="editor" placeholder="Empieza a escribir..."></textarea>
+        <button onclick="saveContent()">Guardar Contenido</button>
+
+        <h2>Contenido Actual:</h2>
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('editor');
+        const contentDisplay = document.getElementById('content');
+
+        // Cargar contenido guardado al cargar la página
+        window.onload = function() {
+            const savedContent = localStorage.getItem('publicWebsiteContent');
+            if (savedContent) {
+                contentDisplay.textContent = savedContent;
+                editor.value = savedContent; // Para que el editor muestre el contenido guardado
+            } else {
+                contentDisplay.textContent = "Aún no hay contenido. ¡Escribe algo!";
+            }
+        };
+
+        function saveContent() {
+            const newContent = editor.value;
+            localStorage.setItem('publicWebsiteContent', newContent);
+            contentDisplay.textContent = newContent;
+            alert('Contenido guardado localmente en tu navegador.');
+        }
+    </script>
+</body>
+</html>
